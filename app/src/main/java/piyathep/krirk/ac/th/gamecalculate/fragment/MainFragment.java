@@ -31,7 +31,25 @@ public class MainFragment extends Fragment {
 
 //        Calculate controller
         calculateController();
+
+//        Clear Controller
+        clearController();
+
     }   // Main Method
+
+    private void clearController() {
+        Button button = getView().findViewById(R.id.btnClear);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                TextView textView = getView().findViewById(R.id.txtShowName);
+//                textView.setText("Click Show Name");
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentMainFragment, new MainFragment())
+                        .addToBackStack(null).commit();
+        }
+        });
+    }
 
     private void calculateController() {
         Button button = getView().findViewById(R.id.btnCalculate);
