@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import piyathep.krirk.ac.th.gamecalculate.MainActivity;
 import piyathep.krirk.ac.th.gamecalculate.R;
@@ -24,13 +26,45 @@ public class MainFragment extends Fragment {
 //        Create Toolbar
         createToolbar();
 
+//        ShowName Controller
+        showNameController();
 
+//        Calculate controller
+        calculateController();
     }   // Main Method
+
+    private void calculateController() {
+        Button button = getView().findViewById(R.id.btnCalculate);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentMainFragment, new CalculateFragment())
+                        .addToBackStack(null).commit();
+
+            }
+        });
+
+    }
+
+    private void showNameController() {
+
+        Button button = getView().findViewById(R.id.btnShowName);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TextView textView = getView().findViewById(R.id.txtShowName);
+                textView.setText("Game");
+
+            }
+        });
+    }
 
     private void createToolbar() {
 
         Toolbar toolbar = getView().findViewById(R.id.ToolbarMain);
-        ((MainActivity)getActivity()).setSupportActionBar(toolbar);
+        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
 
     }
 
